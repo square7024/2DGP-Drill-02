@@ -11,12 +11,17 @@ character = load_image('character.png')
 square = 0
 
 x = 400
-y = 90
+y = 80
 right = 784
 top = 560
 left = 14
-bottom = 90
+bottom = 80
 center = 400
+
+r = 240
+x_c = 90
+y_c = -90
+
 while (True):
     if square == 0:
         clear_canvas()
@@ -39,7 +44,15 @@ while (True):
         grass.draw_now(400, 30)
         character.draw_now(x, y)
 
-        x = 400 + math.cos(math.radians(90 - (x - 400) * 360 / 300))
+        x_c += 1
+        x = 400 + r * math.cos(math.radians(x_c))
+        y_c += 1
+        y = 320 + r * math.sin(math.radians(y_c))
+
+        if (x_c == 90 + 360):
+            x_c = 90
+            y_c = -90
+            square = 0
 
 
     delay(0.005)
